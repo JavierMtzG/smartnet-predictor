@@ -1,0 +1,1 @@
+#capa de datos temporal en memoria

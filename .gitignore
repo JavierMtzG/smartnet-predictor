@@ -1,0 +1,13 @@
+# Python cache y bytecode
+__pycache__/
+*.pyc
+
+# Entornos locales
+.venv/
+
+# Variables de entorno/secretos
+.env
+
+# Artefactos futuros (modelo, BD)
+artifacts/
+smartnet.db
