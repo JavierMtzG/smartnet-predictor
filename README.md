@@ -1,14 +1,26 @@
-# SmartNet Predictor
+# SmartNet Predictor — Fase 1 (Base de API)
 
-Proyecto educativo para construir una **API de sensores inteligentes** con FastAPI 
-que predice fallos o degradación en red usando ML. Empezamos por la base (API),
-y luego iremos añadiendo BD, datos sintéticos, entrenamiento y dashboard.
+API educativa para recibir lecturas de sensores de red (latencia, jitter, RSSI, ruido), validar/normalizar los datos y exponer estado por nodo. Esta fase usa **almacenamiento en memoria** (mock) y fija los **contratos** de la API.
 
-## Estado del Bloque 1
-- API mínima con FastAPI y endpoint `/healthz` funcionando.
-- Estructura limpia para crecer sin caos.
+## Estado de la fase
+- ✅ `/health` — health check
+- ✅ `/ingest` — ingesta por lote (mock en memoria) con validaciones Pydantic v2
+- ✅ `/status` — último estado por nodo (snapshot)
+- ✅ `/docs` — documentación automática (Swagger/OpenAPI)
 
-## Cómo ejecutar (resumen)
-- Entorno virtual activo (`.venv`).
-- Dependencias instaladas desde `requirements.txt`.
-- Arrancar con: `uvicorn app.main:app --reload` y visitar `/healthz`.
+## Stack actual
+- Python 3.10+
+- FastAPI (ASGI)
+- Pydantic v2 (contratos/validación)
+- Uvicorn (servidor ASGI)
+
+## Estructura
+app/
+init.py
+main.py # objeto ASGI y montaje de routers
+schemas.py # contratos Pydantic (entrada/salida)
+state.py # “pseudobase” en memoria (mock)
+routers/
+init.py
+ingest.py # POST /ingest
+status.py # GET /status
